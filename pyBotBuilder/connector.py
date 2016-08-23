@@ -10,8 +10,7 @@ def send_message(serviceUrl, conversation_id, activity, activity_id=None):
     if activity_id:
         connect_url += activity_id
 
-    token = auth.get_token()
-    headers = _make_auth_headers(token['access_token'])
+    headers = _make_auth_headers()
 
     response = requests.post(
         url=connect_url,
@@ -19,4 +18,4 @@ def send_message(serviceUrl, conversation_id, activity, activity_id=None):
         headers=headers,
     )
 
-    return response
+    return response.json()
