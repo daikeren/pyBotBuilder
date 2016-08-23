@@ -4,9 +4,11 @@ import requests
 
 
 AUTH_URL = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+CLIENT_ID = os.environ.get('CLIENT_ID')
+CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
 
 
-def get_token(client_id, client_secret):
+def get_token(client_id=CLIENT_ID, client_secret=CLIENT_SECRET):
     payload = {
         'grant_type': "client_credentials",
         'client_id': client_id,
@@ -18,6 +20,4 @@ def get_token(client_id, client_secret):
 
 
 if __name__ == '__main__':
-    CLIENT_ID = os.environ.get('CLIENT_ID')
-    CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
     print(get_token(CLIENT_ID, CLIENT_SECRET))
