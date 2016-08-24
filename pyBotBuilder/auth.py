@@ -16,7 +16,10 @@ def get_token(client_id=CLIENT_ID, client_secret=CLIENT_SECRET):
         'scope': "https://graph.microsoft.com/.default",
     }
     response = requests.post(AUTH_URL, data=payload)
-    return response.json()
+    response.raise_for_status()
+    token = response.json()['access_token']
+
+    return token
 
 
 if __name__ == '__main__':
