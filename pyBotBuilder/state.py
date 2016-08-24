@@ -19,6 +19,7 @@ def get_state(channel_id, user_id=None, conversation_id=None):
     headers, state_url = _make_auth_headers(), _make_state_url(channel_id, user_id, conversation_id)
 
     response = requests.get(state_url, headers=headers)
+    response.raise_for_status()
 
     return response.json()
 
@@ -26,5 +27,6 @@ def set_state(channel_id, state, user_id=None, conversation_id=None):
     headers, state_url = _make_auth_headers(), _make_state_url(channel_id, user_id, conversation_id)
 
     response = requests.post(state_url, headers=headers, json=state)
+    response.raise_for_status()
 
     return response.json()

@@ -16,5 +16,6 @@ def send_message(serviceUrl, conversation_id, activity, activity_id=None):
         json=activity,
         headers=headers,
     )
+    response.raise_for_status()
 
     return response
