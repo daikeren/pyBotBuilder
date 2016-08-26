@@ -2,7 +2,7 @@ import json
 
 from bottle import route, run, request
 
-import pyBotBuilder
+import botbuilder
 
 
 @route('/webhook/', method='POST')
@@ -14,7 +14,7 @@ def index():
         'type': 'message',
         'text': payload['text']
     }
-    response = pyBotBuilder.connector.send_message(payload['serviceUrl'], payload['conversation']['id'], activity)
+    response = botbuilder.connector.send_message(payload['serviceUrl'], payload['conversation']['id'], activity)
     return ""
 
 run(host='localhost', port=8000)
